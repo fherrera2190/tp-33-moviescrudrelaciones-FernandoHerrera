@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/style.css' />
-  </head>
+  <%- include('./partials/head.ejs') %>
   <body>
-    <figure>
-      <img src="/img/logo-DH.png" alt="Logo Digital House">
-    </figure>
+    <%- include('./partials/header.ejs') %>
     <h1><%= title %></h1>
     <p>Bienvenidos a <%= title %></p>
     <p><a href="/movies">Listado de Películas</a></p>
+    <%- include('./partials/scripts.ejs') %>
   </body>
 </html>

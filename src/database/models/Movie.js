@@ -1,5 +1,3 @@
-const Genre = require('./Genre');
-
 module.exports = (sequelize, dataTypes) => {
   let alias = "Movie"; // esto debería estar en singular
   let cols = {
@@ -39,10 +37,19 @@ module.exports = (sequelize, dataTypes) => {
   const Movie = sequelize.define(alias, cols, config);
 
   //Aquí debes realizar lo necesario para crear las relaciones con los otros modelos (Genre - Actor)
-  Movie.associate = Movie.belongsTo(Genre , {
-    as: "genero",
-    foreignKey: "id"
-  });
+  Movie.associate = function(models) {
+    Movie.belongsTo(models.Genre, {
+      as: "genre",
+      foreignKey: "genre_id"
+    });
+
+    Movie.belongsToMany(models.Actor, {
+      as: "actors",
+      through: "actor_movie",
+      foreignKey: "movie_id",
+      otherKey: "actor_id"
+    });
+  };
 
   return Movie;
 };
