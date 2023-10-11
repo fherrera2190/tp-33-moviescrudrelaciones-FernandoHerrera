@@ -7,8 +7,15 @@
   <%- include('./partials/header.ejs') %>
   <h1 class="titulo">Película Editada: <%= Movie.title %></h1>
   <section class="form-control p-3">
-    <form class="row" action="/movies/update/<%= Movie.id %>?_method=PUT" method="post">
+    <form class="row" action="/movies/update/<%= Movie.id %>?_method=PUT" enctype="multipart/form-data" method="post">
       <div class="col-4">
+        <div class="d-flex justify-content-center flex-column align-items-center  ">
+          <div class="d-flex justify-content-center align-items-center border" style="height: 200px; width: 200px;">
+            <img class="img-fluid" src="/img/peliculas/<%=Movie.image?Movie.image:"logo-DH.png"%>" alt="">
+          </div>
+          <label for="image" class="my-3 btn btn-dark ">Subir Imagen</label>
+          <input hidden class="form-control" type="file" id="image" name="image">
+        </div>
         <div>
           <label class="form-label" for="title">Title </label>
           <input class="form-control" type="text" name="title" id="title" value="<%= Movie.title %>" required>

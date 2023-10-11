@@ -2,13 +2,14 @@ const db = require("../../database/models");
 
 const destroy = function(req, res) {
   // TODO
-  db.ActorMovie
+  // return res.json(req.params.id);
+  db.Actor_Movie
     .destroy({
       where: {
         movie_id: req.params.id
       }
     })
-    .then(reponse => {
+    .then(() => {
       db.Actor
         .update(
           {
@@ -20,22 +21,28 @@ const destroy = function(req, res) {
             }
           }
         )
-        .then(response => {
-          console.log(response);
+        .then(() => {
           db.Movie
             .destroy({
               where: {
                 id: req.params.id
               }
             })
-            .then(result => {
-              console.log(response);
-              res.redirect("/movies");
+            .then(() => {
+              db.Movie
+                .destroy({
+                  where: {
+                    id: req.params.id
+                  }
+                })
+                .then(() => {
+                  return res.redirect("/movies");
+                });
             });
         });
     })
-    .catch(err => {
-      console.log(err);
+    .catch(error => {
+      console.log(error);
     });
 };
 
