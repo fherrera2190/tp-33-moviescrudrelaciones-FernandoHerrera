@@ -7,8 +7,8 @@
 //Aquí tienen otra forma de llamar a los modelos creados
 
 const moviesController = {
-  list: require("./movies/list"),//OK
-  detail: require("./movies/detail"),//OK
+  list: require("./movies/list"), //OK
+  detail: require("./movies/detail"), //OK
   new: require("./movies/new"),
   recomended: require("./movies/recomended"),
   //Aqui dispongo las rutas para trabajar con el CRUD
@@ -17,7 +17,8 @@ const moviesController = {
   edit: require("./movies/edit"),
   update: require("./movies/update"),
   delete: require("./movies/delete"),
-  destroy: require("./movies/destroy")
+  destroy: require("./movies/destroy"),
+  search: require("./movies/search")
 };
 
 module.exports = moviesController;

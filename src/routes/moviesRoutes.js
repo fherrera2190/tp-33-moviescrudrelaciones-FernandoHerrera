@@ -17,6 +17,7 @@ router.put(
   upload.single("image"),
   moviesController.update
 );
+router.get("/movies/search", moviesController.search);
 router.get("/movies/delete/:id", moviesController.delete);
 router.delete("/movies/delete/:id", moviesController.destroy);
 

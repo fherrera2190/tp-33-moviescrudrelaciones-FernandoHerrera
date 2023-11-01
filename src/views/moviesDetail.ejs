@@ -6,7 +6,7 @@
   <%-include('./partials/header.ejs') %>
   <div class="row border border-1 rounded-3 p-3 d-flex  justify-content-between ">
     <div class="col-3 d-flex justify-content-center align-items-center border   " style="height: 200px; width: 200px;">
-      <img class="img-fluid " src="/img/peliculas/<%=movie.image?movie.image:"logo-DH.png"%>" alt="">
+      <img class="img-fluid h-100 " src="<%=/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(movie.image)?movie.image: `/img/peliculas/${(movie.image && movie.image!=="N/A")?movie.image:"logo-DH.png"}`%>" alt="">
     </div>
     <section class="col-9">
       <h1><%= movie.title %> </h1>

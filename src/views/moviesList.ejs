@@ -6,12 +6,51 @@
 <body>
   <%- include('./partials/header.ejs') %>
   <h1>LISTADO DE PELÍCULAS</h1>
+  <hr>
   <br>
-  <p>
-    <a class="botonVolver" href="/">inicio</a>
-    <a class="botonAgregar" href="/movies/add">Agregar una Pelicula</a>
-  </p>
+  <div class="d-flex align-items-center justify-content-between  ">
+    <div class="mx-3">
+      <a class="botonVolver" href="/">inicio</a>
+      <a class="botonAgregar" href="/movies/add">Agregar una Pelicula</a>
+    </div>
+    <div>
+      <nav aria-label="Page navigation example ">
+        <ul class="pagination">
+          <% if(paginate.hasPreviousPages || paginate.hasNextPages(pagesCount)){%>
+          <% if (paginate.hasPreviousPages) { %>
+          <li class="page-item">
+
+            <a href="<%=paginate.href().prev %>" class="page-link prev">Previous</a>
+          </li>
+          <% }else{ %>
+          <li class="page-item">
+            <a href="#" class="page-link disabled">Previous</a>
+          </li>
+          <% } %>
+          <% if (pages) { %>
+          <% pages.forEach(page=> { %>
+          <li class="page-item">
+            <a href="<%=page.url%>" class="page-link <%=page.number===currentPage&&"current"%> "><%=page.number%></a>
+          </li>
+          <% }) %>
+          <% } %>
+
+          <% if (paginate.hasNextPages(pagesCount)) { %>
+          <li class="page-item">
+            <a href="<%=paginate.href()%>" class="page-link">Next</i></a>
+          </li>
+          <% }else{ %>
+            <li class="page-item">
+              <a href="#" class="page-link disabled ">Next</i></a>
+            </li>
+          <% } %>
+          <% } %>
+        </ul>
+      </nav>
+    </div>
+  </div>
   <br>
+  <hr>
   <div class="container">
     <div class="d-flex justify-content-start  gap-3  flex-wrap ">
       <% for( let i = 0; i < movies.length; i++ ) { %>
